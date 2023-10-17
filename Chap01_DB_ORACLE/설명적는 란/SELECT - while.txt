@@ -1,0 +1,24 @@
+connection 을 사용하여 url, username, password 를 연결해준다.
+
+String [select 코드 담을 변수명] = " select 쿼리 작성" ;
+만약에 뷰, 테이블을 찾을 수 없습니다. 가 나올 경우
+// sql developer 접속해서 워크시트 실행 후 쿼리문 실행해보기
+//commit 안했는지 확인하기
+
+
+ResultSet에 담은 겨로가 집합을 next() 를 사용하여 확인
+예제코드 : 
+		ResultSet result =
+		while(result.next()){ // 로 표기
+		}
+		ResulSet 객체에서 다음 행으로 이동하는 것을 표기한 것
+		next() 메서드는 다음 행이 있으면 true 를 반환하고 그렇지 않으면 false를 반환함 
+		결과 집합에 더 많은 행이 있는 경우 행이 종료될 때 까지 루프를 계속 실행
+		
+		while(result.next()){
+		//예약어 지정할 변수명 = result.getInt("DB table에서 불러올 행 작성"); 
+		int accountID = result.getInt("account_id");
+						값을 추출할 때 예약어에 맞는 값을 넣고 추출
+		} catch(){
+			try-catch 블록을 사용하여 쿼리 실행 중 발생할 수 있는 예외 처리
+		}

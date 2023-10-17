@@ -5,46 +5,61 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class DBConnetion {
+		public static void main(String[] args) {
+				selectIf();
+		}
 
-	public static void main(String[] args) {
-		
-		//1. 드라이버 연결 : Oracle JDBC 드라이버 클래스 이름
-		String driver = "oracle.jdbc,driver,OracleDriver";
-		//2. 오라클 내 컴퓨터 연결 : 데이터 베이스 연결 정보
-		//                             나의 IP 주소:포트번호
+static void selectIf() {
+		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "khbank";
 		String password = "kh1234";
 		Connection con = null;
 		try {
-			//연결을 사용하여 쿼리 실행 또는 데이터베이스 작업 수행
 			con = DriverManager.getConnection(url, user, password);
-			System.out.println("데이터베이스 연결 성공");
-			//Select 쿼리
-			String selectQuery = "SELECT * FROM BANK ";
+			//where절 사용하여 조건추가
+			String selectQuery = "SELECT * FROM BANK WHERE account_number=?";
 			PreparedStatement selectState = con.prepareStatement(selectQuery);
+			
+			String[] targetAN = {"1234567890", "5555666777"};
+			selectState.setString(1, targetAN[0]);
+			selectState.setString(2, targetAN[1]);
+			
+			
+			//여기에 원하는 조건의 account_id 설정
+			//int targetID = 1;
+			
+			//조건 설정
+			//selectState.setInt(1, targetID);
+			
 			ResultSet result = selectState.executeQuery();
-			//result.next() : result 객체에서 다음 행(row)으로 이동
-			//다음행이 있으면 true 반환, 그렇지 않으면 false
-			//khbank에 있는 bank 테이블 결과 집합에서 account_id를 가져옴
-			while(result.next()) {
-			int accountID = result.getInt("account_id");
-			//1. 함께 해보기 : accountNumber
-			String accountName = result.getString("account_name");
-			double balance =result.getDouble("balance");
-			//2. 함께 해보기 : branchName
-			//3. java.sql import Data lastTransctionDate 가져오기
-			System.out.println("ACCOUNT_ID : " + accountID);
-			System.out.println("ACCOUNT_NAME : " + accountName);
-			System.out.println("BALANCE : " + balance);
+			
+			
+			
+			if (result.next()) {
+				int a = result.getInt("account_id");
+				String b = result.getString("account_number");
+				String c = result.getString("account_name");
+				double d = result.getDouble("balance");
+				String e = result.getString("branch_name");
+				Date f = result.getDate("last_transaction_date");
+				
+				System.out.println("ACCOUNT_ID : " + a);
+				System.out.println("ACCOUNT_NUMBER : " + b);
+				System.out.println("ACCOUNT_NAME : " + c);
+				System.out.println("BALANCE: " + d);
+				System.out.println("BRANCH_NAME: " + e);
+				System.out.println("LAST_TRANSACTION_DATE : " + f);
+			} else {
+				System.out.println("조건에 해당하는 데이터가 없습니다.");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
+		
 	}
-
 }
