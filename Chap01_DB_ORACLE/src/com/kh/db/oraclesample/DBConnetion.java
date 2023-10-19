@@ -62,10 +62,13 @@ static void selectIf() {
 			e.printStackTrace();
 		}
 		
+		
+		
 	}
 
 
 static void insertBank() {
+
 	String user = "khbank";
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String password = "kh1234";
@@ -89,4 +92,21 @@ static void insertBank() {
 	
 		}
 }
+
+static void insertKhcafe() {
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user = "khcafe";
+	String password = "kh1234";
+	Connection con = null;
+	try {
+		con = DriverManager.getConnection(url, user, password);
+}
+	catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+	}}
+
+
+
 }
