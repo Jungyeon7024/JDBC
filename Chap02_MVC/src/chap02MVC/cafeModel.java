@@ -47,17 +47,16 @@ import java.sql.SQLException;
 			}
 		}
 		
-		public void deleteCafe(/*매개변수*/) {
-			{
-				Connection con = DriverManager.getConnection(url,username,password);
-				String sql = "";
+		public void deleteCafe(int cafeId) {
+			try {
+				Connection con = DriverManager.getConnection(url, username, password);
+				String sql = "DELETE FROM cafes WHERE cafe_id = ?";
 				PreparedStatement st = con.prepareStatement(sql);
-				
-				model.deleteCafe(menuId);
-				
-				
+				st.setInt(1, cafeId);
 				st.executeUpdate();
-				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		

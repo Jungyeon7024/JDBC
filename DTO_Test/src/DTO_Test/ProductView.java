@@ -10,7 +10,7 @@ public class ProductView {
 			System.out.println("Product_name : "+ p.getProductName());
 			System.out.println("Category : "+ p.getCategory());
 			System.out.println("Price : "+ p.getPrice());
-			System.out.println("Stock_quantity"+p.getStockquantity());
+			System.out.println("Stock_quantity : "+p.getStockquantity());
 			System.out.println();
 			
 		}

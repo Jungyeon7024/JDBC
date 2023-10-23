@@ -61,7 +61,7 @@ public class ProductDTO {
 		this.stockquantity = stockquantity;
 	}
 	
-	@Override
+	@Override // 이게 없어도 작동은 하지만 다른 곳에서 가져왔다는 것을 보여줌
 	public String toString() {
 		return "ProuductDTO";
 	}
